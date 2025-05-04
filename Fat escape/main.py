@@ -173,8 +173,8 @@ class Player:
 
             for enemy in enemies[:]:
                 if not enemy.is_dead and arrow.rect.colliderect(enemy.rect):
-                    enemy.health -= 5  # Увеличим урон от стрел
-                    if enemy.health <= 1:
+                    enemy.health -= 5  # Урон от стрелы
+                    if enemy.health <= 0:  # Проверяем, что здоровье <= 0
                         enemy.is_dead = True
                         enemy.image = pygame.image.load('femka_pohudevshaya.png').convert_alpha()
                     self.arrows.remove(arrow)
@@ -236,7 +236,7 @@ class Enemy:
             return False
         return True
 
-    def move_towards_player(self, player, map):  # Теперь принимает объект player
+    def move_towards_player(self, player, map):
         if self.is_dead:
             return
 
